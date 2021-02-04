@@ -1,6 +1,107 @@
-<h1>Hello PMS user</h1>
-<i><%= current_user.email %></i>
-<p>Created at:<%= current_user.created_at %></p>
-<p>Updated at:<%= current_user.updated_at %></p>
-<p>veera:<%= current_user.id %></p>
-<span><%= link_to "New", new_user_registration_path, :class => 'navbar-link'  %></span>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  padding: 64px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both
+}
+
+.column-66 {
+  float: left;
+  width: 66.66666%;
+  padding: 20px;
+}
+
+.column-33 {
+  float: left;
+  width: 33.33333%;
+  padding: 20px;
+}
+
+.large-font {
+  font-size: 48px;
+}
+
+.xlarge-font {
+  font-size: 64px
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+}
+
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .column-66,
+  .column-33 {
+    width: 100%;
+    text-align: center;
+  }
+  img {
+    margin: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Clarity Section -->
+<div class="container" style="background-color:#f1f1f1" >
+  <div class="row">
+    <div class="column-46">
+      <h1 class="large-font" style="color:red;"><b><%= current_user.name %></b></h1><br>
+      <p><span style="color:red">User Name:</span> <%= current_user.name %></p>
+      <p><span style="color:red">Gender:</span> <%= current_user.gender %></p>
+      <p><span style="color:red">Date Of Birth:</span> <%= current_user.dob %></p>
+      <p><span style="color:red">Address:</span> <%= current_user.address %></p>
+      <p><span style="color:red">Mobile Number:</span> <%= current_user.mobile %></p><br>
+      <button class="button" style="background-color:red">Edit Details</button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container" style="background-color:#f1f1f1" >
+  <div class="row">
+    <div class="column-66">
+      <p class="large-font" style="color:mediumseagreen;"><b><%= current_user.email %></b></p>
+      <p><span style="color:green">User Id: </span> <%= current_user.id %></p>
+      <p><span style="color:green">User Email:</span> <%= current_user.email %></p>
+      <p><span style="color:green">Role Type:</span> <%= current_user.role %></p>
+      <p><span style="color:green">Created Time:</span> <%= current_user.created_at %></p>
+      <p><span style="color:green">Updated Time:</span> <%= current_user.updated_at %></p><br>
+      <button class="button" style="background-color:green">Edit Details</button>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container" style="background-color:#f1f1f1" >
+      <h3 align="center">Thank You </h3>
+</div>
+</body>
+</html>

@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true%>
   </div>
 
   <div class="field">
@@ -35,6 +35,34 @@
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
+
+  <div class="field">
+    Gender:<br>
+    <%= f.radio_button :gender, "Male" %>
+    <%= f.label :gender_male, "Male" %>
+    <%= f.radio_button :gender, "Female" %>
+    <%= f.label :gender_female, "Female" %><br/> 
+  </div>
+
+  <div class="field">
+    <%= f.label :dob, "Date of Birth:" %><br/>
+    <%= f.text_field :dob %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role, "Select Role:" %><br />
+    <%= f.select :role, ["","Trainee","Associate","Developper"] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address, "Enter Addresss:" %><br />
+    <%= f.text_area :address, size: "20*30" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mobile, "Enter Mobile Number:" %><br />
+    <%= f.telephone_field :mobile %><br>
+  </div><br>
 
   <div class="actions">
     <%= f.submit "Update" %>
