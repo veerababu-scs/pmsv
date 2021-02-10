@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  padding: 64px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both
+}
+
+.column-66 {
+  float: left;
+  width: 66.66666%;
+  padding: 20px;
+}
+
+.column-33 {
+  float: left;
+  width: 33.33333%;
+  padding: 20px;
+}
+
+.large-font {
+  font-size: 48px;
+}
+
+.xlarge-font {
+  font-size: 64px
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+}
+
+@media screen and (max-width: 1000px) {
+  .column-33,
+  .column-11 {
+    width: 100%;
+    text-align: center;
+  }
+  img {
+    margin: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Clarity Section -->
+<div class="container" style="background-color:#f1f1f1" >
+  <div class="row">
+    <div class="column-33">
+      <p class="large-font" style="color:green;"><b>New Task</b></p>
+      <%= link_to "My Tasks", tasks_path, :class => 'navbar-link'%><br><br>
+      <%= form_for :task, url: tasks_path do |f| %>
+
+        <%= f.label :project_id, "Select Project:" %><br />
+        <%= f.collection_select :project_id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true %><br>
+
+        <%= f.label :name, "Task Name:" %><br>
+        <%= f.text_field :name, autofocus: true %><br>
+
+        <%= f.label :title , "Task Title:" %><br>
+        <%= f.text_field :title, autofocus: true %><br>
+
+        <%= f.label :task_time, "Select Hours:" %>
+        <%= f.select :task_time ,[0,2,4,6,8] %><br>
+
+        <%= f.label :status, "Status:" %>
+        <%= f.select :status, ["Incomplete","Completed"] %><br>
+
+        <%= f.label :task_date, "Due Date:" %><br>
+        <%= f.date_field :task_date, autofocus: true %><br><br>
+        
+        <%= f.submit "Create Task" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</body>
+</html>
