@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   #devise_for :users, controllers: { confirmations: 'confirmations' }
   devise_for :users
-  resources :tasks, :only => [:index,:new,:create,:edit]
-  resources :projects, :only => [:index,:new,:create]
+  resources :tasks, :only => [:index,:new,:create,:edit,:update]
+  resources :projects, :only => [:index,:new,:create,:edit,:update]
   resources :users, :only => [:index]
   root "users#index"
 	get "users/index"

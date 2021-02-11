@@ -74,7 +74,7 @@ body {
       <%= form_for :task, url: tasks_path do |f| %>
 
         <%= f.label :project_id, "Select Project:" %><br />
-        <%= f.collection_select :project_id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true %><br>
+        <%= f.collection_select :project_id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true, autofocus:true %><br>
 
         <%= f.label :name, "Task Name:" %><br>
         <%= f.text_field :name, autofocus: true %><br>
@@ -83,17 +83,26 @@ body {
         <%= f.text_field :title, autofocus: true %><br>
 
         <%= f.label :task_time, "Select Hours:" %>
-        <%= f.select :task_time ,[0,2,4,6,8] %><br>
+        <%= f.select :task_time ,[1,2,4,6,8],:include_blank=>true %><br>
 
         <%= f.label :status, "Status:" %>
-        <%= f.select :status, ["Incomplete","Completed"] %><br>
+        <%= f.select :status, ["Incomplete","Completed"],:include_blank=>true %><br>
 
         <%= f.label :task_date, "Due Date:" %><br>
         <%= f.date_field :task_date, autofocus: true %><br><br>
-        
+
         <%= f.submit "Create Task" %>
+
       <% end %>
+      <br><p style="color:red">
+      <% if @task.errors.full_messages.any? %>
+          <% @task.errors.full_messages.each do |error_message| %>
+          <%= error_message if @task.errors.full_messages.first == error_message %>
+          <% end %>
+      <% end %>
+      </p>
     </div>
+
   </div>
 </div>
 </body>

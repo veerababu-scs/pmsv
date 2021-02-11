@@ -1,11 +1,11 @@
 class Project < ApplicationRecord
 	belongs_to :user
 	has_many :tasks
-	validates :name, presence: true
+	validates :name,:project_type, presence: true
 	enum project_type: {
-    simple: "Simple Project",
-    moderate: "Moderate Project",
-    complex: "Complex Project"
+    :Simple=>"Simple Project",
+    :Moderate=>"Moderate Project",
+    :Complex=>"Complex Project"
 	}
 	#@project = Project.all
     #enum project_type:[:simple,:moderate,:complex]

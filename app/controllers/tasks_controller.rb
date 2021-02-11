@@ -1,12 +1,15 @@
 class TasksController < ApplicationController
 	
 	def index
-		@project = Project.where(:user_id=>current_user.id)
-		@task = Task.all
+		@task=Task.all.joins(project: :user).where(projects:{users:{id:current_user.id}})
 	end
 
 	def new
 		@task = Task.new
+	end
+
+	def edit
+		#@task=Task.find(params[:id])
 	end
 
 	def create

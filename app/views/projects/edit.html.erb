@@ -1,1 +1,35 @@
-<h2>Editing Project</h2>
+<title>Edit Project</title>
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+<!-- Clarity Section -->
+<div class="container" style="background-color:#f1f1f1" >
+  <div class="row">
+    <div class="column-66">
+      <p class="large-font" style="color:orange;"><b>Edit Project</b></p>
+      <%= link_to "My Projects", projects_path, :class => 'navbar-link'%><br><br>
+
+      <%= form_for :project, url:project_path(@project),method: :put do |f| %>
+      <%= f.label :name, "Edit Project Name:" %>
+      <%= f.text_field :name, autofocus: true %><br><br>
+      <%= f.label :project_type, "Select Project Type:" %>
+      <%= f.select :project_type, Project.project_types.values,include_blank:true %><br><br>
+      <%= f.hidden_field :user_id,value:current_user.id %>
+      <%= f.submit "Update Project" %>
+      <% end %><br>
+      <p style="color:red;">
+          <% if @project.errors.full_messages.any? %>
+          <% @project.errors.full_messages.each do |error_message| %>
+          <%= error_message if @project.errors.full_messages.first == error_message %> <br />
+          <% end %>
+          <% end %>
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
