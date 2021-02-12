@@ -1,7 +1,17 @@
 class ProjectsController < ApplicationController
+	
+
 	def index
-		@project = Project.where(:user_id=>current_user.id)
+
+		if !params[:project_type].present?
+			@project = Project.where(:user_id=>current_user.id)
+		else
+			@project=Project.where(project_type: params[:project_type],:user_id=>current_user.id)
+		end
+		
 	end
+
+	
 
 	def edit
 		@project = Project.find(params[:id])

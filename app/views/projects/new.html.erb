@@ -12,6 +12,7 @@
     <div class="column-66">
       <p class="large-font" style="color:orange;"><b>Create Projects</b></p>
       <%= link_to "My Projects", projects_path, :class => 'navbar-link'%><br><br>
+      
       <%= form_for :project, url: projects_path do |f| %>
       <%= f.label :name, "Enter Project Name:" %>
       <%= f.text_field :name, autofocus: true %><br><br>

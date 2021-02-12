@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Attachments</title>
+</head>
+<body>
+
+  <div class="container" style="background-color:#f1f1f1" >
+  <div class="row">
+    <div class="column-33">
+      <p class="large-font" style="color:green;"><b>Upload File</b></p>
+      <%= link_to "My Files", attachments_path, :class => 'navbar-link'%><br><br>
+
+      <%= form_for :attachment, url: attachments_path do |f| %>
+
+        <%= f.label :project_id, "Select Project:" %><br />
+        <%= f.collection_select :project_id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true, autofocus:true %><br>
+
+        <%= f.label :file_name, "File Name:" %><br>
+        <%= f.text_field :file_name, autofocus: true %><br><br>
+
+        <br><%= f.submit "Upload" %>
+
+      <% end %>
+      <br><p style="color:red">
+      <% if @attachment.errors.full_messages.any? %>
+          <% @attachment.errors.full_messages.each do |error_message| %>
+          <%= error_message if @attachment.errors.full_messages.first == error_message %>
+          <% end %>
+      <% end %>
+      </p>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

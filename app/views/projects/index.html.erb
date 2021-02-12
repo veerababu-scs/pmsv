@@ -12,12 +12,12 @@
       <p class="large-font" style="color:darkblue;"><b>Projects</b></p>
 
       <div align="right">
-      <%= form_for :projects do |f| %>Filter Projects: 
+      <%= form_for :projects,url:projects_path(project_type: :project_type) do |f| %>Filter Projects: 
       <%= f.select :project_type, Project.project_types.keys,include_blank:true %>
       <%= f.submit "Filter Results" %>
       <% end %>
       </div>
-      <%= link_to "Create Project",new_project_path %>
+      <%= link_to "Create Project",new_project_path %> | <%= link_to 'Tasks', tasks_path, :class => 'navbar-link' %> | <%= link_to 'Attachments', attachments_path, :class => 'navbar-link' %>
       <table cellpadding="20">
       <tr>
       <th>User Name</th>
@@ -29,7 +29,7 @@
       <tr>
       <td><%= current_user.name %></td>
       <td><%= data.name %></td>
-      <td><%= data.project_type %></td>
+      <td><%= link_to data.project_type,projects_path(project_type: data.project_type) %></td>
       <td><%= link_to "Edit",edit_project_path(data.id) %></td>
       </tr>
       <% end %>                  

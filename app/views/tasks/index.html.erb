@@ -11,17 +11,9 @@
   <div class="row-30">
     <div class="column-1">
       <p class="large-font" style="color:darkblue;"><b>Task Board</b></p>
-      <%= link_to "Create Task",new_task_path %> | <%= link_to "Edit",edit_task_path(:id) %>
+      <%= link_to "Create Task",new_task_path %> | <%= link_to "Back",projects_path(:id) %>
       <div align="right">
-      <%= form_for :task do |f| %>
-        <%= f.label :name,"Select Project" %>:
-        <%= f.collection_select :name,@task,:project_id,:name,:include_blank=>true %>
-        <%= f.submit "Filter" %>
-      <% end %>
       </div>
-
-
-
       <table cellpadding="20">
       <tr>
       <th>Name</th>
@@ -36,7 +28,7 @@
       <td><%= data.title %></td>
       <td><%= data.status %></td>
       <td><%= data.task_time %> Hours</td>
-      <td><%= data.task_date %></td><td><%= data.project.name %></td>
+      <td><%= data.task_date %></td><td><%= link_to data.project.name, tasks_path(project_id: data.project_id) %></td>
       </tr>
       <% end %>                  
       </table>

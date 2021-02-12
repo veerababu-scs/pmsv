@@ -1,7 +1,16 @@
 class TasksController < ApplicationController
 	
 	def index
-		@task=Task.all.joins(project: :user).where(projects:{users:{id:current_user.id}})
+
+		if !params[:project_id].present?
+			@task=Task.all.joins(project: :user).where(projects:{users:{id:current_user.id}})
+		else
+			@task=Task.all.joins(:project).where(project_id: params[:project_id])
+		end
+	end
+
+	def show
+		#@task=Task.find_by(project_id: params[:project_id])
 	end
 
 	def new

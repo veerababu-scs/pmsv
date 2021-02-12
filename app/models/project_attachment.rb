@@ -1,0 +1,2 @@
+class ProjectAttachment < ApplicationRecord
+end
