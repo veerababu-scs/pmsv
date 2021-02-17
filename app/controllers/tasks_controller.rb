@@ -1,11 +1,16 @@
 class TasksController < ApplicationController
 	
 	def index
-
-		if !params[:project_id].present?
+		begin
+			if params[:project_id].present?
+				@task=Task.all.joins(:project).where(project_id: params[:project_id])
+			elsif params[:project][:id].present?
+				@task=Task.all.joins(:project).where(project_id: params[:project][:id])
+			else
+				@task=Task.all.joins(project: :user).where(projects:{users:{id:current_user.id}})
+			end
+		rescue Exception => e
 			@task=Task.all.joins(project: :user).where(projects:{users:{id:current_user.id}})
-		else
-			@task=Task.all.joins(:project).where(project_id: params[:project_id])
 		end
 	end
 

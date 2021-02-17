@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>attachments</title>
+</head>
+<body>
+<%= link_to 'Attachments', project_attachments_path, :class => 'navbar-link' %>
+<%= form_for :project_attachment, url: project_attachments_path, html: { multipart: true } do |form| %>
+<%= form.label :project_id, "Select Project:" %><br />
+<%= form.collection_select :project_id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true, autofocus:true %><br>
+
+  <%= form.file_field :avatar %>
+  <%= form.submit %>
+ <% end %>
+</body>
+</html>

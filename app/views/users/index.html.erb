@@ -7,56 +7,25 @@
 <body>
 
 <!-- Clarity Section -->
-<div class="container" style="background-color:#f1f1f1" >
-  <div class="row">
-    <div class="column-46">
-      <h1 class="large-font" style="color:red;"><b><%= current_user.name %></b></h1><br>
+<div class="col-sm-8">
+      <h2><%= current_user.name %></h2>
       <p><span style="color:red">User Name:</span> <%= current_user.name %></p>
       <p><span style="color:red">Gender:</span> <%= current_user.gender %></p>
       <p><span style="color:red">Date Of Birth:</span> <%= current_user.dob %></p>
       <p><span style="color:red">Address:</span> <%= current_user.address %></p>
-      <p><span style="color:red">Mobile Number:</span> <%= current_user.mobile %></p><br>
-      <button class="button" style="background-color:red">Edit Details</button>
-    </div>
-  </div>
-</div>
-<br>
-<div class="container" style="background-color:#f1f1f1" >
-  <div class="row">
-    <div class="column-66">
-      <p class="large-font" style="color:mediumseagreen;"><b><%= current_user.email %></b></p>
+      <p><span style="color:red">Mobile Number:</span> <%= current_user.mobile %></p></p>
+      <br>
+      <h2><%= current_user.email %></h2>
       <p><span style="color:green">User Sign_In Counts: </span> <%= current_user.sign_in_count %></p>
       <p><span style="color:green">User Email:</span> <%= current_user.email %></p>
       <p><span style="color:green">Role Type:</span> <%= current_user.role %></p>
       <p><span style="color:green">Organization Name:</span> <%= current_user.org.org_name %></p>
       <p><span style="color:green">Created Time:</span> <%= current_user.created_at %></p>
-      <p><span style="color:green">Updated Time:</span> <%= current_user.updated_at %></p><br>
-      <button class="button" style="background-color:green">Edit Details</button>
     </div>
   </div>
 </div>
-<br>
-<!--
-<div class="container" style="background-color:#f1f1f1" >
-  <div class="row">
-    <div class="column-66">
-      <p class="large-font" style="color:darkblue;"><b>Projects</b></p>
-      <%= form_for :project do |f| %>
-      <%= f.label :name, "Enter Project Name:" %>
-      <%= f.text_field :name, autofocus: true %><br><br>
-      <%= f.label :project_type, "Select Project Type:" %>
-      <%= f.select :project_type, Project.project_types.keys %><br>
-      <br><span class="small-font" style="color:darkblue;">User Projects List:</span>
-      <%= f.collection_select :name, Project.where(user_id:current_user.id).order('name').all, :id,:name, :include_blank => true %>
-      <%= f.submit "Sign up" %>
-      <% end %>
-    </div>
-  </div>
-</div>
-<br>
--->
-<div class="container" style="background-color:#f1f1f1" >
-        <h3 align="center">Thank You </h3>
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h4>Thank You</h4>
 </div>
 </body>
 </html>
