@@ -3,14 +3,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
-#gem "devise_google_authenticator", path: "/lib/devise_google_authenticator"
+gem "devise_google_authenticator", path: "lib/devise_google_authenticator-master"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.1'
 # Use pg as the database for Active Record
 gem 'pg', '~> 1.1'
 
-gem 'devise'
+gem 'devise','~> 4.7.3'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'

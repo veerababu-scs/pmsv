@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :tasks, :only => [:index,:new,:create,:edit,:update,:show]
   resources :projects, :only => [:index,:new,:create,:edit,:update]
-  resources :users, :only => [:index]
+  resources :users, :only => [:index,:show]
   #resources :attachments, :only=>[:index,:new,:create]
   resources :project_attachments, :only=>[:index,:new,:create,:show]
   root "users#index"

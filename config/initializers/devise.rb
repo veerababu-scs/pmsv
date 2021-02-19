@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -308,4 +307,27 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  # ==> Devise Google Authenticator Extension
+  # Configure extension for devise
+
+  # How long should the user have to enter their token. To change the default, uncomment and change the below:
+  config.ga_timeout = 3.minutes
+
+  # Change time drift settings for valid token values. To change the default, uncomment and change the below:
+  config.ga_timedrift = 3
+
+  # Change setting to how long to remember device before requiring another token. Change to nil to turn feature off.
+  # To change the default, uncomment and change the below:
+   config.ga_remembertime = nil
+
+  # Change setting to assign the application name used by code generator. Defaults to Rails.application.class.parent_name.
+  # To change the default, uncomment and change the below:
+  # config.ga_appname = 'example.com'
+
+  # Change setting to bypass the Display QR page immediately after a user sign's up
+  # To change the default, uncomment and change the below. Defaults to false:
+   config.ga_bypass_signup = true
+
+
 end
