@@ -312,7 +312,7 @@ Devise.setup do |config|
   # Configure extension for devise
 
   # How long should the user have to enter their token. To change the default, uncomment and change the below:
-  config.ga_timeout = 3.minutes
+  config.ga_timeout = 30.minutes
 
   # Change time drift settings for valid token values. To change the default, uncomment and change the below:
   config.ga_timedrift = 3

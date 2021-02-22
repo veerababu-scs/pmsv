@@ -5,31 +5,63 @@ class Devise::DisplayqrController < DeviseController
 
   # GET /resource/displayqr
   def show
+
     if resource.nil? || resource.gauth_secret.nil?
+      
       sign_in resource_class.new, resource
       redirect_to stored_location_for(scope) || :root
     else
       @tmpid = resource.assign_tmp
+      #if resource.gauth_enabled?
+       # @u = User.find(resource.id)
+       # @bpin = @u.ga_pin
+      #end
+      #if resource.gauth_enabled?
+
+      #end
+      #@up = User.find(resource.id)
+      #us = User.find_by(:gauth_tmp=>params[:id])
+      #@bpin = us.ga_pin
+      #puts @bpin
       render :show
     end
   end
 
   def update
+
+puts params[resource_name]['ga_pin']
+puts "...........1"
+puts params[resource_name]['gauth_token']
+puts "......2"
+    #puts params[resource_name]['gauth_token'].to_i
     if resource.gauth_tmp != params[resource_name]['tmpid'] || !resource.validate_token(params[resource_name]['gauth_token'].to_i)
-      set_flash_message(:error, :invalid_token)
-      render :show
+      puts ".......3"
+      flash[:alert]="Invalid_Token"
+      redirect_to :user_displayqr
       return
     end
-
+    puts ".......4"
     if resource.set_gauth_enabled(params[resource_name]['gauth_enabled'])
       set_flash_message :notice, (resource.gauth_enabled? ? :enabled : :disabled)
-      #bypass_sign_in(@user)
+      
+                if resource.gauth_enabled?
+                  @bpin = 6.times.map{rand(10)}.join
+                  @up = User.find(resource.id)
+                  @up.update(ga_pin:@bpin.to_i)
+                  flash[:notice]="Your Back-Up Pin is: #{@bpin}"#set_flash_message(:notice, "Your Back-Up Pin is: #{@bpin}")#puts @up.name,@bpin
+                else
+                  @bpin = nil
+                  @up = User.find(resource.id)
+                  @up.update(ga_pin:@bpin.to_i)
+                  flash[:notice]="Disabled 2FA"#set_flash_message(:notice, "Your Back-Up Pin is: null")
+                end
+
       bypass_sign_in resource, scope: scope
-      #sign_in scope, resource, :bypass => true
       redirect_to stored_location_for(scope) || :root
     else
       render :show
     end
+
   end
 
   def refresh
@@ -58,7 +90,7 @@ class Devise::DisplayqrController < DeviseController
 
   # 7/2/15 - Unsure if this is used anymore - @xntrik
   def resource_params
-    return params.require(resource_name.to_sym).permit(:gauth_enabled) if strong_parameters_enabled?
+    return params.require(resource_name.to_sym).permit(:gauth_enabled,:ga_pin) if strong_parameters_enabled?
     params
   end
 

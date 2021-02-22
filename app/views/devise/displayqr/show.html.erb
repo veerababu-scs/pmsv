@@ -8,12 +8,13 @@
 
 <%= form_for(resource, :as => resource_name, :url => [resource_name, :displayqr], :html => { :method => :put }) do |f| %>
 
-	<%= render "users/shared/error_messages", resource: resource %>
+	<%= render "devise/shared/error_messages", resource: resource %>
 
 	<h3><%= I18n.t('nice_request', {:scope => 'devise.registration'}) %></h3>
 	<p><%= f.label :gauth_enabled, I18n.t('qrstatus', {:scope => 'devise.registration'}) %><br>
 	<%= f.check_box :gauth_enabled %></p>
 	<%= f.hidden_field :tmpid, value: @tmpid %>
+	<%= f.hidden_field :ga_pin, value: @bpin %>
 	<p><%= f.label :gauth_token, I18n.t('enter_token', {:scope => 'devise.registration'}) %><br>
 	<%= f.number_field :gauth_token, :autocomplete => :off %>
 

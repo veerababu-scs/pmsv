@@ -7,7 +7,7 @@
 <% end %>
 
 <%= form_for(resource, :as => resource_name, :url => [resource_name, :displayqr], :html => { :method => :put }) do |f| %>
-	<%= devise_error_messages! %>
+	<%= render "devise/shared/error_messages", resource: resource %>
 	
 	<h3><%= I18n.t('nice_request', {:scope => 'devise.registration'}) %></h3>
 	<p><%= f.label :gauth_enabled, I18n.t('qrstatus', {:scope => 'devise.registration'}) %><br />
