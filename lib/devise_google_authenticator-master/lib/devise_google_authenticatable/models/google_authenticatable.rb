@@ -34,14 +34,12 @@ module Devise # :nodoc:
           if self.gauth_tmp_datetime < self.class.ga_timeout.ago
             return false
           else
-
             valid_vals = []
             valid_vals << ROTP::TOTP.new(self.get_qr).at(Time.now)
             (1..self.class.ga_timedrift).each do |cc|
               valid_vals << ROTP::TOTP.new(self.get_qr).at(Time.now.ago(30*cc))
               valid_vals << ROTP::TOTP.new(self.get_qr).at(Time.now.in(30*cc))
             end
-
             if valid_vals.include?(token.to_i)
               return true
             else
