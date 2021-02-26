@@ -52,11 +52,17 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
-  #   super(resource)
+  #   self.resource = warden.authenticate!(auth_options)
+  #   set_flash_message!(:notice, :signed_up)
+  #   sign_up(resource_name, resource)
+  #   yield resource if block_given?
+  #   respond_with resource, location: root_path
+  #   #super(resource)
   # end
 
-  # The path used after sign up for inactive accounts.
+  #The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
+  #   #respond_with resource, location: root_path
   # end
 end

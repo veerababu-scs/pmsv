@@ -1,29 +1,24 @@
 class ApplicationController < ActionController::Base
 	 # before_action :authenticate_user!
    #before_action :authenticate_admin!
+   #load_and_authorize_resource
+    # rescue_from CanCan::AccessDenied do |exception|
+    # redirect_to root_path, :alert => "sub admin permissions"
+    # end
 	 before_action :configure_permitted_parameters, if: :devise_controller?
 
 
    def after_sign_in_path_for(resource)
 
-       user_sign_in_url = new_user_session_url
-       admin_sign_in_url = new_admin_session_url
-       puts "..........."
+       #user_sign_in_url = new_user_session_url
+       #admin_sign_in_url = new_admin_session_url
+       #puts "..........."
        role = resource.class
-       puts "role: #{role}"
+       #puts "role: #{role}"
 
        if role.to_s == "Admin"
          puts "Admin Module"
-         # return role redirect_to (root_path)
-         #redirect_to("http://localhost:3000/admin")
-         #redirect_to admin_session_path
-         #self.response_body = nil
-         #request.referer
-         #super 
-        "http://localhost:3000/admin/"
-
-         # stored_location_for(resource) || admins_dashboard_path
-
+         
        end
 
        if role.to_s == "User"
