@@ -44,7 +44,7 @@ class Devise::DisplayqrController < DeviseController
                   if resource.gauth_enabled?
 
                         #puts "Pin Verification Processing"
-                        if resource.ga_pin != params[resource_name]['gauth_token'].to_i
+                        if resource.ga_pin != params[resource_name]['gauth_token']
                         flash[:alert]="Invalid Pin"
                         redirect_to :user_displayqr
                         return
@@ -77,14 +77,14 @@ class Devise::DisplayqrController < DeviseController
 
               @bpin = 6.times.map{rand(10)}.join
               @up = User.find(resource.id)
-              @up.update(ga_pin:@bpin.to_i)
+              @up.update(ga_pin:@bpin)
               flash[:notice]="Your Back-Up Pin is: #{@bpin}"#set_flash_message(:notice, "Your Back-Up Pin is: #{@bpin}")#puts @up.name,@bpin
           
           else
 
               @bpin = nil
               @up = User.find(resource.id)
-              @up.update(ga_pin:@bpin.to_i)
+              @up.update(ga_pin:@bpin)
               flash[:notice]="Disabled 2FA"#set_flash_message(:notice, "Your Back-Up Pin is: null")
           
           end

@@ -6,7 +6,7 @@
 <body>
 
 <!-- Clarity Section -->
-<div class="container" style="background-color:#f1f1f1" >
+<div class="container" style="background-color:white" >
   <div class="row-30">
     <div class="column-1">
       <p class="large-font" style="color:darkblue;"><b>Projects</b></p>
@@ -18,10 +18,28 @@
       <% end %>
       </div>-->
       <%= link_to "Create Project",new_project_path %> | <%= link_to 'Tasks', tasks_path, :class => 'navbar-link' %> | <%= link_to 'Attachments', project_attachments_path, :class => 'navbar-link' %>
-      
+      <table cellpadding="20">
+      <tr>
+      <th>User Name</th>
+      <th>Project Name</th>
+      <th>Project Type</th>
+      <th>Edit Project</th>
+      <th>View Tasks</th>
+      </tr>
+      <% @project.each do |data| %>
+      <tr>
+      <td><%= current_user.name %></td>
+      <td><%= data.name %></td>
+      <td><%= link_to data.project_type,projects_path(project_type: data.project_type)%></td>
+      <td><%= link_to "Edit",edit_project_path(data.id) %></td>
+      <td><%= link_to "#{data.name} Tasks", tasks_path(project_id: data.id) %></td>
+      </tr>
+      <% end %>                  
+      </table>
     </div>
   </div>
 </div>
+<!--
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -44,5 +62,6 @@
   <% end %>
   </tbody>
 </table>
+-->
 </body>
 </html>

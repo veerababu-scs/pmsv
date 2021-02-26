@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<body>
-
-<!-- Clarity Section -->
-<div class="col-sm-8">
-      <h2><%= current_user.name %></h2>
-      <p><span style="color:red">User Name:</span> <%= current_user.name %></p>
-      <p><span style="color:red">Gender:</span> <%= current_user.gender %></p>
-      <p><span style="color:red">Date Of Birth:</span> <%= current_user.dob %></p>
-      <p><span style="color:red">Address:</span> <%= current_user.address %></p>
-      <p><span style="color:red">Mobile Number:</span> <%= current_user.mobile %></p></p>
-      <br>
-      <h2><%= current_user.email %></h2>
-      <p><span style="color:green">User Sign_In Counts: </span> <%= current_user.sign_in_count %></p>
-      <p><span style="color:green">User Email:</span> <%= current_user.email %></p>
-      <p><span style="color:green">Role Type:</span> <%= current_user.role %></p>
-      <p><span style="color:green">Organization Name:</span> <%= current_user.org.org_name %></p>
-      <p><span style="color:green">Created Time:</span> <%= current_user.created_at %></p>
-    </div>
-  </div>
-</div>
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h4>Thank You</h4>
-</div>
-</body>
-</html>
+<% if admin_signed_in? %>
+<h1>Admin logged in</h1>
+<%= current_admin.email %>
+<%= link_to 'Admin', '/admin', :class => 'navbar-link' %>
+<% end %>

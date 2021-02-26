@@ -1,7 +1,7 @@
 class Devise::CheckgaController < Devise::SessionsController
 
-  prepend_before_action :devise_resource, :only => [:show]
-  prepend_before_action :require_no_authentication, :only => [ :show, :update ]
+  #prepend_before_action :devise_resource, :only => [:show]
+  #prepend_before_action :require_no_authentication, :only => [ :show, :update ]
 
   include Devise::Controllers::Helpers
 
@@ -23,7 +23,7 @@ class Devise::CheckgaController < Devise::SessionsController
 
     if not resource.nil?
       
-        if resource.validate_token(params[resource_name]['gauth_token'].to_i) || resource.ga_pin == params[resource_name]['gauth_token'].to_i
+        if resource.validate_token(params[resource_name]['gauth_token'].to_i) || resource.ga_pin == params[resource_name]['gauth_token']
             
             set_flash_message(:notice, :signed_in) if is_navigational_format?
             sign_in(resource_name,resource)

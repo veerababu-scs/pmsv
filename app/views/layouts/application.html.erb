@@ -30,7 +30,6 @@
     <% end %>
   </p>
 
-
   <div class="jumbotron text-center" style="margin-bottom:0;height:15px">
       <h1>Project Management System</h1>
   </div>
@@ -53,6 +52,12 @@
     <span class="navbar-text">
       <%= link_to "Projects", projects_path, :class=>'navbar-link' %> | <%= link_to "Tasks", tasks_path, :class=>'navbar-link' %> | <%= link_to "Attachments", project_attachments_path, :class=>'navbar-link' %> | <%= link_to "Manage 2FA", user_displayqr_path %>
     </span>
+    <% else %>
+      <% if admin_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+      <% else %>
+      <%= link_to "Admin Login", new_admin_session_path, :class => 'navbar-link' %>
+      <% end %>
     <% end %>
   </div>
 </nav>
