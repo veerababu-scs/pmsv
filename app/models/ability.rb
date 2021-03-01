@@ -8,23 +8,44 @@ class Ability
     #alias_action :create, :read, :update, :destroy, to: :crud
     alias_action :create, :read, :update, :destroy, to: :crud
     puts ".....checking......."
-    puts admin.name
+    puts admin.email
       admin ||= Admin.new # guest user (not logged in)
       if admin.role == "super_admin"
-
-        # can :crud, :all
-        # can :invite, :all
+        puts "You are a super_admin and you have all permissions"
         can :manage, :all
-      else
-        #can :read, :all
       end
 
       if admin.role == "sub_admin"
-         can :manage, :all
-        puts "You are sub_admin and limited permissions"
+        puts "You are a sub_admin and you have limited permissions"
+        can :access, :rails_admin
+        can :manage, :dashboard
+        can [:read,:destroy], User
       end
+
       if admin.role == "admin"
-        puts "You are admin and major permissions"
+        puts "You are a admin and you have major permissions"
+        can :access, :rails_admin
+        can :manage, :dashboard
+        puts ".....Admin Read Operation....."
+        arr = admin.read_action
+        for i in arr do
+        can :read,i.constantize
+        end
+        puts ".....Admin Create Operation....."
+        arr = admin.create_action
+        for i in arr do
+        can :create,i.constantize
+        end
+        puts ".....Admin Update Operation....."
+        arr = admin.update_action
+        for i in arr do
+        can :update,i.constantize
+        end
+        puts ".....Admin Delete Operation....."
+        arr = admin.delete_action
+        for i in arr do
+        can :destroy,i.constantize
+        end
       end
     #
     # The first argument to `can` is the action you are giving the user

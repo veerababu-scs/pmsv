@@ -14,6 +14,6 @@ class Admin < ApplicationRecord
   #   :Super_Admin=>"Super Admin",
   #   :Sub_Admin=>"Sub Admin"
   # }
-  validates :name,:role, presence: true
+  #validates :name,:role, presence: true
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 end

@@ -2,9 +2,10 @@ class ApplicationController < ActionController::Base
 	 # before_action :authenticate_user!
    #before_action :authenticate_admin!
    #load_and_authorize_resource
-    # rescue_from CanCan::AccessDenied do |exception|
-    # redirect_to root_path, :alert => "sub admin permissions"
-    # end
+    rescue_from CanCan::AccessDenied do |exception|
+      puts exception.inspect
+    redirect_to main_app.root_path, :alert => "sub admin permissions"
+    end
 	 before_action :configure_permitted_parameters, if: :devise_controller?
 
 
