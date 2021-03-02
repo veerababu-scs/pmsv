@@ -43,4 +43,13 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model 'Admin' do |config|
+    configure :read_action, :pg_string_array
+    configure :create_action, :pg_string_array
+    configure :update_action, :pg_string_array
+    configure :delete_action, :pg_string_array
+  end
+
+
 end

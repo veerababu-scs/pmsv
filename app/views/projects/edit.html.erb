@@ -7,12 +7,16 @@
 <body>
 
 <!-- Clarity Section -->
-<div class="container" style="background-color:#f1f1f1" >
-  <div class="row">
-    <div class="column-66">
-      <p class="large-font" style="color:orange;"><b>Edit Project</b></p>
-      <%= link_to "My Projects", projects_path, :class => 'navbar-link'%><br><br>
-
+      <div class="card bg-info text-white">
+      <div class="card-body">Edit Project</div>
+      </div>
+      
+      <div class="card bg- text-black">
+      <div class="card-body"><%= link_to "My Projects", projects_path, :class => 'navbar-link'%></div>
+      </div>
+      
+      <div class="card bg- text-black">
+      <div class="card-body">
       <%= form_for :project, url:project_path(@project),method: :put do |f| %>
       <%= f.label :name, "Edit Project Name:" %>
       <%= f.text_field :name, autofocus: true %><br><br>
@@ -22,14 +26,13 @@
       <%= f.submit "Update Project" %>
       <% end %><br>
       <p style="color:red;">
-          <% if @project.errors.full_messages.any? %>
-          <% @project.errors.full_messages.each do |error_message| %>
-          <%= error_message if @project.errors.full_messages.first == error_message %> <br />
-          <% end %>
-          <% end %>
+      <% if @project.errors.full_messages.any? %>
+      <% @project.errors.full_messages.each do |error_message| %>
+      <%= error_message if @project.errors.full_messages.first == error_message %> <br />
+      <% end %>
+      <% end %>
       </p>
-    </div>
-  </div>
-</div>
+      </div>
+      </div>
 </body>
 </html>

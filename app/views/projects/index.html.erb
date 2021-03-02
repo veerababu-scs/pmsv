@@ -4,20 +4,20 @@
 <title>Edit Projects</title>
 </head>
 <body>
-
 <!-- Clarity Section -->
-<div class="container" style="background-color:white" >
-  <div class="row-30">
-    <div class="column-1">
-      <p class="large-font" style="color:darkblue;"><b>Projects</b></p>
 
-      <!--<div align="right">
-      <%= form_for :projects,url:projects_path(project_type: :project_type) do |f| %>Filter Projects: 
-      <%= f.select :project_type, Project.project_types.keys,include_blank:true %>
-      <%= f.submit "Filter Results" %>
-      <% end %>
-      </div>-->
+    <div class="card bg-info text-white">
+    <div class="card-body">Projects</div>
+    </div>
+
+    <div class="card bg-default text-black">
+    <div class="card-body">
       <%= link_to "Create Project",new_project_path %> | <%= link_to 'Tasks', tasks_path, :class => 'navbar-link' %> | <%= link_to 'Attachments', project_attachments_path, :class => 'navbar-link' %>
+      </div>
+    </div>
+
+    <div class="card bg-default text-black">
+    <div class="card-body">
       <table cellpadding="20">
       <tr>
       <th>User Name</th>
@@ -38,30 +38,5 @@
       </table>
     </div>
   </div>
-</div>
-<!--
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">User Name</th>
-      <th scope="col">Project Name</th>
-      <th scope="col">Project Type</th>
-      <th scope="col">Edit Project</th>
-      <th scope="col">View Tasks</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @project.each do |data| %>
-    <tr>
-      <td><%= current_user.name %></td>
-      <td><%= data.name %></td>
-      <td><%= link_to data.project_type,projects_path(project_type: data.project_type)%></td>
-      <td><%= link_to "Edit",edit_project_path(data.id) %></td>
-      <td><%= link_to "#{data.name} Tasks", tasks_path(project_id: data.id) %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
--->
 </body>
 </html>
