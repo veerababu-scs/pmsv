@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>new task</title>
 </head>
 <body>
 
 <!-- Clarity Section -->
-<div class="container" style="background-color:#f1f1f1" >
-  <div class="row">
-    <div class="column-33">
-      <p class="large-font" style="color:green;"><b>New Task</b></p>
-      <%= link_to "My Tasks", tasks_path, :class => 'navbar-link'%><br><br>
-      <%= form_for :task, url: tasks_path do |f| %>
-
-        <%= f.label :project_id, "Select Project:" %><br />
-        <%= f.collection_select :project_id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true, autofocus:true %><br>
-
-        <%= f.label :name, "Task Name:" %><br>
-        <%= f.text_field :name, autofocus: true %><br>
-
-        <%= f.label :title , "Task Title:" %><br>
-        <%= f.text_field :title, autofocus: true %><br>
-
-        <%= f.label :task_time, "Select Hours:" %>
-        <%= f.select :task_time ,[1,2,4,6,8],:include_blank=>true %><br>
-
-        <%= f.label :status, "Status:" %>
-        <%= f.select :status, ["Incomplete","Completed"],:include_blank=>true %><br>
-
-        <%= f.label :task_date, "Due Date:" %><br>
-        <%= f.date_field :task_date, autofocus: true %><br><br>
-
-        <%= f.submit "Create Task" %>
-
-      <% end %>
-      <br><p style="color:red">
-      <% if @task.errors.full_messages.any? %>
-          <% @task.errors.full_messages.each do |error_message| %>
-          <%= error_message if @task.errors.full_messages.first == error_message %>
-          <% end %>
-      <% end %>
-      </p>
-    </div>
-
-  </div>
+<div class="card bg-info text-white">
+      <div class="card-body">Create Task</div>
 </div>
+
+<div class="card bg-white text-blue">
+      <div class="card-body"><%= link_to "My Tasks", tasks_path, :class => 'navbar-link'%></div>
+</div>
+
+  <div class="card bg-white text-blue" align="center">
+  <div class="card-body">
+  <%= form_for :task, url: tasks_path do |f| %>
+
+      <table cellpadding="15">
+      <tr>
+          <td><%= f.label :project_id, "Select Project:" %></td>
+          <td><%= f.collection_select :project_id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true %></td>
+      </tr>
+      <tr>
+          <td><%= f.label :name, "Task Name:" %></td>
+          <td><%= f.text_field :name, size: 20 %></td>
+      </tr>
+      <tr>
+          <td><%= f.label :title , "Task Title:" %></td>
+          <td><%= f.text_field :title %></td>
+      </tr>
+      <tr>
+          <td><%= f.label :task_time, "Select Hours:" %></td>
+          <td><%= f.select :task_time ,[1,2,3,4,5,6,7,8],:include_blank=>true %></td>
+      </tr>
+      <tr>
+          <td><%= f.label :status, "Status:" %></td>
+          <td><%= f.select :status, ["Incomplete","Completed"],:include_blank=>true %></td>
+      </tr>
+      <tr>
+          <td><%= f.label :task_date, "Due Date:" %></td>
+          <td><%= f.date_field :task_date %></td>
+      </tr>
+      <tr>
+          <td><%= f.submit "Create Task" %></td>
+          <td><p style="color:red">
+              <% if @task.errors.full_messages.any? %>
+              <% @task.errors.full_messages.each do |error_message| %>
+              <%= error_message if @task.errors.full_messages.first == error_message %></p>
+          </td>
+      </tr>
+      </table>
+  <% end %>
+  <% end %>
+  <% end %>
+  </div>
+  </div>
 </body>
 </html>

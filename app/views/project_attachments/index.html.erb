@@ -6,11 +6,16 @@
 <body>
 
 <!-- Clarity Section -->
-<div class="container" style="background-color:white" >
-  <div class="row-30">
-    <div class="column-1">
-      <p class="large-font" style="color:darkblue;"><b>Project Attachments</b></p>
-      <%= link_to 'Create Attachments',new_project_attachment_path,:class => 'navbar-link' %>
+<div class="card bg-info text-white">
+<div class="card-body">Project Attachments</div>
+</div>
+
+<div class="card bg-white text-black">
+<div class="card-body"><%= link_to 'Create Attachment',new_project_attachment_path,:class => 'navbar-link' %></div>
+</div>
+
+<div class="card bg-white text-black">
+<div class="card-body" align="center">
       <div align="right">
         <%= form_for 'project', :url => {:action => "create"}, :method => "get" do |f| %>
           <%= f.collection_select :id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true, autofocus:true %>&emsp;
@@ -37,8 +42,7 @@
         </tr>
         <% end %>                  
       </table>
-    </div>
-  </div>
+</div>
 </div>
 </body>
 </html>

@@ -7,11 +7,16 @@
 <body>
 
 <!-- Clarity Section -->
-<div class="container" style="background-color:white" >
-  <div class="row-30">
-    <div class="column-1">
-      <p class="large-font" style="color:darkblue;"><b>Task Board</b></p>
-        <%= link_to "Create Task",new_task_path %>
+      <div class="card bg-info text-white">
+      <div class="card-body">Task Board</div>
+      </div>
+
+      <div class="card bg-white text-black">
+      <div class="card-body"><%= link_to "Create Task",new_task_path %></div>
+      </div>
+
+      <div class="card bg-white text-black">
+      <div class="card-body" align="center">
       <div align="right">
         <%= form_for 'project', :url => {:action => "create"}, :method => "get" do |f| %>
       
@@ -34,13 +39,13 @@
           <td><%= data.title %></td>
           <td><%= data.status %></td>
           <td><%= data.task_time %> Hours</td>
-          <td><%= data.task_date %></td>
+          <td><%= data.task_date.strftime("%a %d-%b-%Y")%></td>
           <td><%= link_to data.project.name, tasks_path(project_id: data.project_id) %></td>
+          <!-- <td><%= data.task_date.strftime("%A-%d-%b-%Y") %></td> -->
         </tr>
         <% end %>                  
       </table>
-    </div>
-  </div>
-</div>
+      </div>
+      </div>
 </body>
 </html>

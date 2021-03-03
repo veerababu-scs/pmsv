@@ -4,13 +4,45 @@
 	<title>attachments</title>
 </head>
 <body>
-<%= link_to 'Attachments', project_attachments_path, :class => 'navbar-link' %>
-<%= form_for :project_attachment, url: project_attachments_path, html: { multipart: true } do |form| %>
-<%= form.label :project_id, "Select Project:" %><br />
-<%= form.collection_select :project_id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true, autofocus:true %><br>
+	
+	<div class="card bg-info text-white">
+	<div class="card-body">Create Attachment</div>
+	</div>
 
-  <%= form.file_field :avatar %>
-  <%= form.submit %>
- <% end %>
+	<div class="card bg-white text-black">
+	<div class="card-body"><%= link_to 'My Attachments', project_attachments_path, :class => 'navbar-link' %></div>
+	</div>
+
+	<div class="card bg-white text-black" align="center">
+	<div class="card-body">
+	<%= form_for :project_attachment, url: project_attachments_path, html: { multipart: true } do |form| %>	
+	
+	<table cellpadding="20">
+		
+		<tr>
+			<td><%= form.label :project_id, "Select Project:" %></td>
+			<td><%= form.collection_select :project_id, Project.where(:user_id=>current_user.id), :id, :name, :include_blank => true, autofocus:true %></td>
+		</tr>
+		<tr>
+			<td><%= form.label :avatar, "Select File:" %></td>
+			<td><%= form.file_field :avatar %></td>
+		</tr>
+		<tr>
+			<td><%= form.submit %></td>
+			<td>
+				<p style="color:red">
+				<% if @project_attachment.errors.full_messages.any? %>
+				<% @project_attachment.errors.full_messages.each do |error_message| %>
+				<%= error_message if @project_attachment.errors.full_messages.first == error_message %>
+				</p>
+			</td>
+		</tr>
+
+	</table>
+	<% end %>
+	<% end %>
+	<% end %>
+	</div>
+	</div>
 </body>
 </html>

@@ -1,12 +1,10 @@
-<title>Create Project</title>
 <!DOCTYPE html>
 <html>
 <head>
-
+<title>Create Project</title>
 </head>
 <body>
 
-<!-- Clarity Section -->
       <div class="card bg-info text-white">
       <div class="card-body">Create Projects</div>
       </div>
@@ -16,25 +14,36 @@
       </div>
 
       <div class="card bg-red text-black">
-      <div class="card-body">
-        
+      <div class="card-body" align="center">
       <%= form_for :project, url: projects_path do |f| %>
-      <%= f.label :name, "Enter Project Name:" %>
-      <%= f.text_field :name, autofocus: true %><br><br>
-      <%= f.label :project_type, "Select Project Type:" %>
-      <%= f.select :project_type, Project.project_types.values,include_blank:true %><br><br>
-      <%= f.hidden_field :user_id,value:current_user.id %>
-      <%= f.submit "Create Project" %>
-      <% end %><br>
-      <p style="color:red;">
-      <% if @project.errors.full_messages.any? %>
-      <% @project.errors.full_messages.each do |error_message| %>
-      <%= error_message if @project.errors.full_messages.first == error_message %> <br />
-      <% end %>
-      <% end %>
-      </p>
 
+            <table cellpadding="20">
+            <tr>
+                  <td><%= f.label :name, "Enter Project Name:" %></td>
+                  <td><%= f.text_field :name, autofocus: true %></td>
+            </tr>
+            <tr>
+                  <td><%= f.label :project_type, "Select Project Type:" %></td>
+                  <td><%=f.select:project_type, Project.project_types.values,include_blank:true%></td>
+                  <td><%= f.hidden_field :user_id,value:current_user.id %></td>
+            </tr>
+            <tr>
+                  <td>
+                        <%= f.submit "Create Project" %>    
+                  </td>
+                  <td>
+                        <p style="color:red;"><% if @project.errors.full_messages.any? %>
+                        <% @project.errors.full_messages.each do |error_message| %>
+                        <%= error_message if @project.errors.full_messages.first == error_message %>
+                        </p> 
+                  </td>
+            </tr>
+            </table>
+      
+      <% end %>
+      <% end %>
+      <% end %>
       </div>
-      </div>
+      </div>      
 </body>
 </html>

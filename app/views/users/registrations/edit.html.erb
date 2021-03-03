@@ -1,120 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <title>user registration</title>
 </head>
 <body>
 
 <!-- Clarity Section -->
-<div class="container" style="background-color:#f1f1f1" >
-  <div class="row">
-    <div class="column-46">
-      <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<div class="card bg-info text-white">
+<div class="card-body">Edit <%= resource_name.to_s.humanize %> Profile</div>
+</div>
+      
+<div class="card bg-white text-black">
+<div class="card-body">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true%>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <table cellpadding="10">
+      <tr>
+        <td><%= f.label :name %></td>
+        <td><%= f.text_field :name, autofocus: true%></td>
+      </tr>
+      <tr>
+        <td><%= f.label :email %></td>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :current_password %><br><small>(we need your current password to confirm your changes)</small></td>
+        <td><%= f.password_field :current_password, autocomplete: "current-password" %></td>
+      </tr>
+      <tr>
+        <td>Select Gender: </td>
+        <td>
+            <%= f.radio_button :gender, "Male" %>
+            <%= f.label :gender_male, "Male" %>
+            <%= f.radio_button :gender, "Female" %>
+            <%= f.label :gender_female, "Female" %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= f.label :dob, "Date of Birth:" %></td>
+        <td><%= f.text_field :dob %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :role, "Select Role:" %></td>
+        <td><%= f.select :role, ["","Trainee","Associate","Developper"] %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :org_id, "Select Organization:" %></td>
+        <td><%= f.collection_select :org_id, Org.order('org_name ASC').all, :id, :org_name, :include_blank => true %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :address, "Enter Addresss:" %></td>
+        <td><%= f.text_area :address, size: "20*30" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :mobile, "Enter Mobile Number:" %></td>
+        <td><%= f.telephone_field :mobile %></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "Update" %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+  </table>
   <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="field">
-    Gender:<br>
-    <%= f.radio_button :gender, "Male" %>
-    <%= f.label :gender_male, "Male" %>
-    <%= f.radio_button :gender, "Female" %>
-    <%= f.label :gender_female, "Female" %><br/> 
-  </div>
-
-  <div class="field">
-    <%= f.label :dob, "Date of Birth:" %><br/>
-    <%= f.text_field :dob %>
-  </div>
-
-  <div class="field">
-    <%= f.label :role, "Select Role:" %><br />
-    <%= f.select :role, ["","Trainee","Associate","Developper"] %>
-  </div>
-
-  <div class="field">
-    <%= f.label :org_id, "Select Organization:" %><br />
-    <%= f.collection_select :org_id, Org.order('org_name ASC').all, :id, :org_name, :include_blank => true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address, "Enter Addresss:" %><br />
-    <%= f.text_area :address, size: "20*30" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :mobile, "Enter Mobile Number:" %><br />
-    <%= f.telephone_field :mobile %><br />
-  </div><br />
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div><br>
-<% end %>
-    </div>
-  </div>
 </div>
-<br>
-<div class="container" style="background-color:#f1f1f1" >
-  <div class="row">
-    <div class="column-66">
-      <h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
-
-    </div>
-  </div>
 </div>
-<br>
-<div class="container" style="background-color:#f1f1f1" >
-  <div class="row">
-    <div class="column-66"><br>
-      <h3>Two Factor Authentication</h3><br>
 
-        <%= link_to "Enable 2FA", user_displayqr_path %><br><br><br>
+<div class="card bg-info text-white">
+<div class="card-body">Delete Account</div>
+</div>
 
-    </div>
-  </div>
+<div class="card bg-secondary text-white" align="center">
+<div class="card-body">
+<h3>Cancel My account</h3>
+<p>Are You Unhappy with your Account ? <%= button_to "Cancel My Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 </div>
-<br>
-<div class="container" style="background-color:#f1f1f1" >
-        <h3 align="center">Thank You </h3>
 </div>
+
 </body>
 </html>
+

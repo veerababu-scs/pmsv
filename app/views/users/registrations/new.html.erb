@@ -1,65 +1,88 @@
-<h2>Sign Up</h2>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>sign up</title>
+</head>
+<body>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="card bg-info text-white">
+<div class="card-body">Sign Up</div>
+</div>
+
+<div class="card bg-white text-black" align="center">
+<div class="card-body">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    Gender:<br>
-    <%= f.radio_button :gender, "Male" %>
-    <%= f.label :gender_male, "Male" %>
-    <%= f.radio_button :gender, "Female" %>
-    <%= f.label :gender_female, "Female" %><br/> 
-  </div>
-
-  <div class="field">
-    <%= f.label :dob, "Date of Birth:" %><br/>
-    <%= f.text_field :dob %>
-  </div>
-
-  <div class="field">
-    <%= f.label :role, "Select Role:" %><br />
-    <%= f.select :role, ["","Trainee","Associate","Developper"] %>
-  </div>
-
-  <div class="field">
-    <%= f.label :org_id, "Select Organization:" %><br />
-    <%= f.collection_select :org_id, Org.order('org_name ASC').all, :id, :org_name, :include_blank => true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address, "Enter Addresss:" %><br />
-    <%= f.text_area :address, size: "30*10" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :mobile, "Enter Mobile Number:" %><br />
-    <%= f.telephone_field :mobile %><br>
-  </div>
-  <br>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-  <br>
+  <table cellpadding="10">
+    <tr>
+      <td><%= f.label :name %></td>
+      <td><%= f.text_field :name, autofocus: true %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :email %></td>
+      <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+    </tr>
+    <tr>
+      <td>
+          <%= f.label :password %>
+          <small>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+        </small>
+      </td>
+      <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :password_confirmation %></td>
+      <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+    </tr>
+    <tr>
+      <td>Gender:</td>
+      <td>
+        <%= f.radio_button :gender, "Male" %>
+        <%= f.label :gender_male, "Male" %>
+        <%= f.radio_button :gender, "Female" %>
+        <%= f.label :gender_female, "Female" %>
+    </td>
+    </tr>
+    <tr>
+      <td><%= f.label :dob, "Date of Birth:" %></td>
+      <td><%= f.text_field :dob %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :role, "Select Role:" %></td>
+      <td><%= f.select :role, ["","Trainee","Associate","Developper"] %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :org_id, "Select Organization:" %></td>
+      <td><%= f.collection_select :org_id, Org.order('org_name ASC').all, :id, :org_name, :include_blank => true %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :address, "Enter Addresss:" %></td>
+      <td><%= f.text_area :address, size: "30*10" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :mobile, "Enter Mobile Number:" %></td>
+      <td><%= f.telephone_field :mobile %></td>
+    </tr>
+    <tr>
+      <td><%= f.submit "Sign up" %></td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+</div>
 <% end %>
-
 <%= render "users/shared/links" %>
+</body>
+</html>
+
+
+
+
+  
+    
+
+    
+  

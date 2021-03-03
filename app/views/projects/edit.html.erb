@@ -16,22 +16,34 @@
       </div>
       
       <div class="card bg- text-black">
-      <div class="card-body">
+      <div class="card-body" align="center">
       <%= form_for :project, url:project_path(@project),method: :put do |f| %>
-      <%= f.label :name, "Edit Project Name:" %>
-      <%= f.text_field :name, autofocus: true %><br><br>
-      <%= f.label :project_type, "Select Project Type:" %>
-      <%= f.select :project_type, Project.project_types.values,include_blank:true %><br><br>
-      <%= f.hidden_field :user_id,value:current_user.id %>
-      <%= f.submit "Update Project" %>
-      <% end %><br>
-      <p style="color:red;">
-      <% if @project.errors.full_messages.any? %>
-      <% @project.errors.full_messages.each do |error_message| %>
-      <%= error_message if @project.errors.full_messages.first == error_message %> <br />
+      
+            <table cellpadding="20">
+            <tr>
+                  <td><%= f.label :name, "Edit Project Name:" %></td>
+                  <td><%= f.text_field :name, autofocus: true %></td>
+            </tr>
+            <tr>
+                  <td><%= f.label :project_type, "Select Project Type:" %></td>
+                  <td><%= f.select :project_type, Project.project_types.values,include_blank:true %></td>
+                  <td><%= f.hidden_field :user_id,value:current_user.id %></td>
+            </tr>
+            <tr>
+                  <td><%= f.submit "Update Project" %></td>
+                  <td>
+                        <p style="color:red;">
+                        <% if @project.errors.full_messages.any? %>
+                        <% @project.errors.full_messages.each do |error_message| %>
+                        <%= error_message if @project.errors.full_messages.first == error_message %>
+                        </p>
+                  </td>
+            </tr>
+            </table>
+
       <% end %>
       <% end %>
-      </p>
+      <% end %>
       </div>
       </div>
 </body>
