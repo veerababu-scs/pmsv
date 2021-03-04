@@ -9,11 +9,11 @@ class Admin < ApplicationRecord
     #  label 'Owner of this ball: '
     #end
   #end
-  # enum role: {
-  #   :Admin=>"Admin",
-  #   :Super_Admin=>"Super Admin",
-  #   :Sub_Admin=>"Sub Admin"
-  # }
+  enum role: {
+    :Admin=>"Admin",
+    :Super_Admin=>"Super Admin",
+    :Sub_Admin=>"Sub Admin"
+  }
   #validates :name,:role, presence: true
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 end

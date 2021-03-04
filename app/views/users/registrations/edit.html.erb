@@ -38,7 +38,7 @@
       </tr>
       <tr>
         <td><%= f.label :dob, "Date of Birth:" %></td>
-        <td><%= f.text_field :dob %></td>
+        <td><%= f.date_field :dob %></td>
       </tr>
       <tr>
         <td><%= f.label :role, "Select Role:" %></td>
@@ -54,7 +54,7 @@
       </tr>
       <tr>
         <td><%= f.label :mobile, "Enter Mobile Number:" %></td>
-        <td><%= f.telephone_field :mobile %></td>
+        <td><%= f.number_field :mobile %></td>
       </tr>
       <tr>
         <td><%= f.submit "Update" %></td>

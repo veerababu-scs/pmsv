@@ -32,6 +32,7 @@
           <th>Task_Time</th>
           <th>Due Date</th>
           <th>Project Name</th>
+          <th>Edit Task</th>
         </tr>
         <% @task.each do |data| %>
         <tr>
@@ -41,6 +42,7 @@
           <td><%= data.task_time %> Hours</td>
           <td><%= data.task_date.strftime("%a %d-%b-%Y")%></td>
           <td><%= link_to data.project.name, tasks_path(project_id: data.project_id) %></td>
+          <td><%= link_to "Edit",edit_task_path(data.id) %></td>
           <!-- <td><%= data.task_date.strftime("%A-%d-%b-%Y") %></td> -->
         </tr>
         <% end %>                  

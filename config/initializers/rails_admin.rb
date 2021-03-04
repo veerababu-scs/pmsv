@@ -1,3 +1,11 @@
+require Rails.root.join('lib', 'rails_admin', 'custom_actions.rb')
+
+RailsAdmin.config do |config|
+  RailsAdmin::Config::Actions.register(
+    RailsAdmin::Config::Actions::Collection
+  )
+end
+
 RailsAdmin.config do |config|
 
   ### Popular gems integration
@@ -32,11 +40,14 @@ RailsAdmin.config do |config|
     dashboard                     # mandatory
     index                         # mandatory
     new
-    export
+    #export
     bulk_delete
     show
     edit
     delete
+
+
+    collection
     #show_in_app
 
     ## With an audit adapter, you can add:

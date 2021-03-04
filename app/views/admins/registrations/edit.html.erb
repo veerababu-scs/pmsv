@@ -10,7 +10,7 @@
 
   <div class="field">
     <%= f.label :role %><br />
-    <%= f.text_field :role,disabled: true, autofocus: true, autocomplete: "name" %>
+    <%= f.select :role, Admin.roles.values,include_blank:true %>
   </div>
 
   <div class="field">

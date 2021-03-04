@@ -6,7 +6,9 @@ class Project < ApplicationRecord
 	belongs_to :user
 	has_many :tasks
 	has_many :project_attachments
-	validates :name,:project_type, presence: true
+	validates :name, presence: true
+	validates :name, uniqueness: { scope: :user_id }
+	validates :project_type, presence: true
 	enum project_type: {
     :Simple=>"Simple",
     :Moderate=>"Moderate",

@@ -10,12 +10,12 @@ class Ability
     #puts ".....checking......."
     #puts admin.email
       admin ||= Admin.new # guest user (not logged in)
-      if admin.role == "super_admin"
+      if admin.role == "Super_Admin"
         #puts "You are a super_admin and you have all permissions"
         can :manage, :all
       end
 
-      if admin.role == "sub_admin"
+      if admin.role == "Sub_Admin"
         #puts "You are a sub_admin and you have limited permissions"
         can :access, :rails_admin
         can :manage, :dashboard
@@ -42,7 +42,7 @@ class Ability
         #can [:read,:destroy], User
       end
 
-      if admin.role == "admin"
+      if admin.role == "Admin"
         #puts "You are a admin and you have major permissions"
         can :access, :rails_admin
         can :manage, :dashboard
