@@ -1,4 +1,4 @@
-require Rails.root.join('lib', 'rails_admin', 'custom_actions.rb')
+require Rails.root.join('lib', 'rails_admin', 'collection.rb')
 
 RailsAdmin.config do |config|
   RailsAdmin::Config::Actions.register(

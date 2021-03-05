@@ -1,0 +1,48 @@
+<h1><%= @object.name.titleize %> Projects List</h1><br>
+<h2>No of Projects : <%= @pc %></h2>
+<h2>Total No of Tasks : <%= @tc %></h2><br>
+
+<table border="1">
+      <tr>
+            <% if @pc !=0 %>
+                  <td><h4>&nbsp;Sl No&nbsp;</h4></td>
+                  <td><h4>&nbsp;Project Name&nbsp;</h4></td>
+                  <td><h4>&nbsp;Project Type&nbsp;</h4></td>
+            <% end %> 
+      </tr>
+      
+      <% @obj.each do |data| %>
+      <tr>
+            <td>&nbsp;<%= data.id %>&nbsp;</td>
+            <td>&nbsp;<%= data.name %>&nbsp;</td>
+            <td>&nbsp;<%= data.project_type %>&nbsp;</td>
+      </tr>
+      <% end %>
+</table>
+<br>
+
+<% @obj.each do |data| %>
+<table border="1">
+      <h4><span style="color:orange">Project :</span>&nbsp;<%= data.name %>&nbsp;(&nbsp;<%= Task.all.joins(:project).where(project_id: data.id).count() %>&nbsp;Tasks&nbsp;)</h4>
+      <% if Task.all.joins(:project).where(project_id: data.id).count()!=0 %>
+            <tr>
+            <td><h5>&nbsp;Task Name&nbsp;</h5></td>
+            <td><h5>&nbsp;Task Title&nbsp;</h5></td>
+            <td><h5>&nbsp;Task Status&nbsp;</h5></td>
+            <td><h5>&nbsp;Task Time&nbsp;</h5></td>
+            <td><h5>&nbsp;Task Date&nbsp;</h5></td>
+      </tr>
+      <% end %>
+      
+      <% @obt = Task.all.joins(:project).where(project_id: data.id) %>
+      <% @obt.each do |da| %>
+      <tr>
+            <td>&nbsp;<%= da.name %>&nbsp;</td>
+            <td>&nbsp;<%= da.title %>&nbsp;</td>
+            <td>&nbsp;<%= da.status %>&nbsp;</td>
+            <td>&nbsp;<%= da.task_time %>&nbsp;hours&nbsp;</td>
+            <td>&nbsp;<%= da.task_date.strftime("%a %d-%b-%Y") %>&nbsp;</td>
+      </tr>
+      <% end %>
+</table><br>
+<% end %>

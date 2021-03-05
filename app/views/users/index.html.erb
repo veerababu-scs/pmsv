@@ -33,6 +33,7 @@
     <p class="card-text">Current Sign in : <%= current_user.current_sign_in_at.to_date%></p><br>
     <p class="card-text">Last Sign in : <%= current_user.last_sign_in_at.to_date %></p><br>
     <p class="card-text">No of Sign in Count : <%= current_user.sign_in_count %></p><br>
+    <p class="card-text">No of Projects : <%= Project.where(:user_id=>current_user.id).count() %></p><br>
   </div>
 </div>
 
